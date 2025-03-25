@@ -73,6 +73,11 @@
                     .query-section {
                         margin-bottom: 40px;
                     }
+
+                    .total {
+                        font-weight: bold;
+                        margin-top: 10px;
+                    }
                 </style>
             </head>
             <body>
@@ -84,6 +89,8 @@
                     <!-- Consultar preguntas con más de 3 respuestas -->
                     <div class="query-section">
                         <h2>Preguntas con más de 3 respuestas</h2>
+                        <xsl:variable name="totalRespuestas" select="count(//document[nbestanswers/answer_item > 3])"/>
+                        <p class="total">Total: <xsl:value-of select="$totalRespuestas"/></p>
                         <table>
                             <thead>
                                 <tr>
@@ -105,6 +112,8 @@
                     <!-- Consultar preguntas con una mejor respuesta -->
                     <div class="query-section">
                         <h2>Preguntas con mejor respuesta</h2>
+                        <xsl:variable name="totalMejorRespuesta" select="count(//document[bestanswer])"/>
+                        <p class="total">Total: <xsl:value-of select="$totalMejorRespuesta"/></p>
                         <table>
                             <thead>
                                 <tr>
@@ -126,6 +135,8 @@
                     <!-- Consultar preguntas sin contenido -->
                     <div class="query-section">
                         <h2>Preguntas sin contenido</h2>
+                        <xsl:variable name="totalSinContenido" select="count(//document[not(content)])"/>
+                        <p class="total">Total: <xsl:value-of select="$totalSinContenido"/></p>
                         <table>
                             <thead>
                                 <tr>
@@ -149,6 +160,8 @@
                     <!-- Consultar preguntas con fecha de respuesta anterior a la fecha de la pregunta -->
                     <div class="query-section">
                         <h2>Preguntas con fecha de respuesta anterior a la pregunta</h2>
+                        <xsl:variable name="totalFechaIncorrecta" select="count(//document[res_date &lt; date])"/>
+                        <p class="total">Total: <xsl:value-of select="$totalFechaIncorrecta"/></p>
                         <table>
                             <thead>
                                 <tr>
@@ -170,6 +183,8 @@
                     <!-- Consultar preguntas sin categoría definida -->
                     <div class="query-section">
                         <h2>Preguntas sin categoría definida</h2>
+                        <xsl:variable name="totalSinCategoria" select="count(//document[not(cat) or not(maincat) or not(subcat)])"/>
+                        <p class="total">Total: <xsl:value-of select="$totalSinCategoria"/></p>
                         <table>
                             <thead>
                                 <tr>
@@ -191,6 +206,8 @@
                     <!-- Consultar preguntas sin idioma -->
                     <div class="query-section">
                         <h2>Preguntas sin idioma definido</h2>
+                        <xsl:variable name="totalSinIdioma" select="count(//document[not(language)])"/>
+                        <p class="total">Total: <xsl:value-of select="$totalSinIdioma"/></p>
                         <table>
                             <thead>
                                 <tr>

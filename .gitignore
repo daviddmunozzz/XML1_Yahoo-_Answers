@@ -1,3 +1,4 @@
 /data/
-/src/html/
+/src/html_documentBD/
+/src/html_queries/
 /src/transform_html.xsl
